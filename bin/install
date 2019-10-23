@@ -27,6 +27,10 @@ function install_elm() {
   local version=$2
   local install_path=$3
 
+  if [ "$install_type" != "version" ]; then
+    fail "asdf-elm supports release installs only"
+  fi
+
   local platform
 
   case "$OSTYPE" in
@@ -53,7 +57,7 @@ function install_elm() {
     chmod +x "${install_path}/bin/elm" || fail "Could not find uncompressed binary"
     echo "The installation was successful!"
   ) || (
-    rm -rf $install_path
+    rm -rf "$install_path"
     fail "An error occurred"
   )
 }
