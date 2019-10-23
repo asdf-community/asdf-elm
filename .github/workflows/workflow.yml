@@ -25,3 +25,10 @@ jobs:
           asdf install elm ${{ matrix.elm }}
           asdf global elm ${{ matrix.elm }}
           elm --version
+
+  shellcheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Run ShellCheck
+        run: shellcheck bin/*
