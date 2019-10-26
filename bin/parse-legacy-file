@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+echo $(
+  cat $1 | grep -oiE '"elm-version": "([0-9\.]+)"' | grep -oE '[0-9\.]+'
+)
