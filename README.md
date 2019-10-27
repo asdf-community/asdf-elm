@@ -10,8 +10,6 @@ Elm plugin for asdf version manager
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 [![License](https://img.shields.io/github/license/asdf-community/asdf-elm?color=brightgreen)](https://github.com/asdf-community/asdf-elm/blob/master/LICENSE)
 
-**Note**: This plugin only supports Elm **_0.19.0_** or later.
-
 ## Prerequirements
 
 - Make sure you have the required dependencies installed:
