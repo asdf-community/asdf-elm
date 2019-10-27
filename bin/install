@@ -26,35 +26,57 @@ install_elm() {
   local install_type=$1
   local version=$2
   local install_path=$3
+  local source_path="${install_path}/bin/elm.gz"
+  local distination_path="${install_path}/bin"
 
   if [ "$install_type" != "version" ]; then
     fail "asdf-elm supports release installs only"
   fi
 
+  local converted_version
+  converted_version=$(echo "$version" | tr -d .)
   local platform
-
-  case "$OSTYPE" in
-    darwin*) platform="mac" ;;
-    linux*) platform="linux" ;;
-    *) fail "Unsupported platform" ;;
-  esac
-
   local architecture
 
-  case "$(uname -m)" in
-    x86_64) architecture="64" ;;
-    *) fail "Unsupported architecture" ;;
-  esac
+  if [ "$converted_version" -ge 0190 ]; then
+    case "$OSTYPE" in
+      darwin*) platform="mac" ;;
+      linux*) platform="linux" ;;
+      *) fail "Unsupported platform" ;;
+    esac
 
-  local download_url="https://github.com/elm/compiler/releases/download/${version}/binary-for-${platform}-${architecture}-bit.gz"
-  local source_path="${install_path}/bin/elm.gz"
+    case "$(uname -m)" in
+      x86_64) architecture="64" ;;
+      *) fail "Unsupported architecture" ;;
+    esac
+
+    local download_url="https://github.com/elm/compiler/releases/download/${version}/binary-for-${platform}-${architecture}-bit.gz"
+  else
+    case "$OSTYPE" in
+      darwin*) platform="darwin" ;;
+      linux*) platform="linux" ;;
+      *) fail "Unsupported platform" ;;
+    esac
+
+    case "$(uname -m)" in
+      x86_64) architecture="x64" ;;
+      *) fail "Unsupported architecture" ;;
+    esac
+
+    local download_url="https://dl.bintray.com/elmlang/elm-platform/${version}/${platform}-${architecture}.tar.gz"
+  fi
 
   (
     echo "∗ Downloading and installing elm..."
-    mkdir -p "${install_path}/bin"
+    mkdir -p "$distination_path"
     curl --silent --location --create-dirs --output "$source_path" "$download_url" || fail "Could not download"
-    gunzip "$source_path" || fail "Could not uncompress"
-    chmod +x "${install_path}/bin/elm" || fail "Could not find uncompressed binary"
+
+    if [ "$converted_version" -ge 0190 ]; then
+      gunzip "$source_path" || fail "Could not uncompress"
+    else
+      tar zxf "$source_path" -C "$distination_path" --strip-components=1 || fail "Could not uncompress"
+    fi
+
     echo "The installation was successful!"
   ) || (
     rm -rf "$install_path"

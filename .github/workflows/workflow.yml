@@ -7,7 +7,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest]
-        elm: [0.19.0, 0.19.1]
+        elm: [0.15.1, 0.18.0, 0.19.0, 0.19.1]
 
     runs-on: ${{ matrix.os }}
 

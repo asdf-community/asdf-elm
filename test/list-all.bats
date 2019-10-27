@@ -18,5 +18,5 @@
 @test "list-all command fails if first line is not the oldest version" {
   run asdf list-all elm
   [ "$status" -eq 0 ]
-  [ "${lines[0]}" = "0.19.0" ]
+  [ "${lines[0]}" = "0.15.1" ]
 }
