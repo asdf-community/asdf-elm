@@ -73,11 +73,16 @@ install_elm() {
 
     if [ "$converted_version" -ge 0190 ]; then
       gunzip "$source_path" || fail "Could not uncompress"
+      chmod +x "${distination_path}/elm" || fail "Could not find uncompressed binary"
     else
       tar zxf "$source_path" -C "$distination_path" --strip-components=1 || fail "Could not uncompress"
+      chmod +x \
+        "${distination_path}/elm" \
+        "${distination_path}/elm-make" \
+        "${distination_path}/elm-package" \
+        "${distination_path}/elm-reactor" \
+        "${distination_path}/elm-repl" || fail "Could not find uncompressed binary"
     fi
-
-    chmod +x "${install_path}/bin/elm*" || fail "Could not find uncompressed binary"
 
     echo "The installation was successful!"
   ) || (
