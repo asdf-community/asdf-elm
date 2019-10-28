@@ -1,6 +1,6 @@
 <div align="center">
 <h1>asdf-elm 📦</h1>
-Elm plugin for asdf version manager
+<span><a href="https://elm-lang.org">Elm</a> plugin for asdf version manager</span>
 </div>
 <hr />
 
