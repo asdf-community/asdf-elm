@@ -5,7 +5,7 @@
 <hr />
 
 [![Main workflow](https://github.com/asdf-community/asdf-elm/workflows/Main%20workflow/badge.svg)](https://github.com/asdf-community/asdf-elm/actions)
-[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors)
+[![All Contributors](https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![License](https://img.shields.io/github/license/asdf-community/asdf-elm?style=flat-square&color=brightgreen)](https://github.com/asdf-community/asdf-elm/blob/master/LICENSE)
 
@@ -48,6 +48,7 @@ Thanks goes to these wonderful people
 <table>
   <tr>
     <td align="center"><a href="https://bsky.moe"><img src="https://avatars3.githubusercontent.com/u/38746192?v=4" width="100px;" alt="BSKY"/><br /><sub><b>BSKY</b></sub></a><br /><a href="https://github.com/asdf-community/asdf-elm/commits?author=imbsky" title="Code">💻</a> <a href="https://github.com/asdf-community/asdf-elm/commits?author=imbsky" title="Documentation">📖</a> <a href="#maintenance-imbsky" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://github.com/brianvanburken"><img src="https://avatars1.githubusercontent.com/u/1044316?v=4" width="100px;" alt="Brian van Burken"/><br /><sub><b>Brian van Burken</b></sub></a><br /><a href="https://github.com/asdf-community/asdf-elm/commits?author=brianvanburken" title="Code">💻</a> <a href="https://github.com/asdf-community/asdf-elm/commits?author=brianvanburken" title="Documentation">📖</a></td>
   </tr>
 </table>
 
