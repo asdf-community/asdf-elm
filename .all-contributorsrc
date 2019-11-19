@@ -15,6 +15,16 @@
         "doc",
         "maintenance"
       ]
+    },
+    {
+      "login": "brianvanburken",
+      "name": "Brian van Burken",
+      "avatar_url": "https://avatars1.githubusercontent.com/u/1044316?v=4",
+      "profile": "https://github.com/brianvanburken",
+      "contributions": [
+        "code",
+        "doc"
+      ]
     }
   ],
   "contributorsPerLine": 7,
