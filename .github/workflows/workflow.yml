@@ -1,13 +1,16 @@
 name: Main workflow
 
-on: [push, pull_request]
+on:
+  push:
+  pull_request:
+  schedule:
+    - cron: "0 0 * * 5"
 
 jobs:
   build:
     strategy:
       matrix:
         os: [ubuntu-latest, macOS-latest]
-        elm: [0.15.1, 0.18.0, 0.19.0, 0.19.1]
 
     runs-on: ${{ matrix.os }}
 
@@ -22,9 +25,9 @@ jobs:
         run: |
           . $HOME/asdf/asdf.sh
           asdf plugin-add elm $GITHUB_WORKSPACE
-          asdf install elm ${{ matrix.elm }}
-          asdf global elm ${{ matrix.elm }}
-          elm --version
+          asdf install elm latest
+        env:
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
     runs-on: macOS-latest
@@ -37,12 +40,12 @@ jobs:
         run: git clone https://github.com/asdf-vm/asdf.git $HOME/asdf
 
       - name: Test plugin
-        env:
-          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           . $HOME/asdf/asdf.sh
           asdf plugin-add elm $GITHUB_WORKSPACE
           bats test
+        env:
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   lint:
     runs-on: ubuntu-latest
