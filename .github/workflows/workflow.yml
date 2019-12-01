@@ -73,3 +73,18 @@ jobs:
 
       - name: Run shfmt
         run: shfmt -d -i 2 -ci .
+
+  plugin_test:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, macOS-latest]
+
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: asdf_plugin_test
+        uses: asdf-vm/actions/plugin-test@v1.0.0
+        with:
+          command: elm --version
+        env:
+          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
