@@ -13,30 +13,23 @@ on:
     - cron: "0 0 * * 5"
 
 jobs:
-  build:
+  plugin_test:
     strategy:
       matrix:
-        os: [ubuntu-latest, macOS-latest]
+        os: [ubuntu-latest, macos-latest]
 
     runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Install asdf
-        run: git clone https://github.com/asdf-vm/asdf.git $HOME/asdf
-
-      - name: Install elm and print elm version
-        run: |
-          . $HOME/asdf/asdf.sh
-          asdf plugin-add elm $GITHUB_WORKSPACE
-          asdf install elm latest
+      - name: asdf_plugin_test
+        uses: asdf-vm/actions/plugin-test@v1.0.0
+        with:
+          command: elm --version
         env:
           GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   test:
-    runs-on: macOS-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code
@@ -64,7 +57,7 @@ jobs:
         run: shellcheck bin/*
 
   format:
-    runs-on: macOS-latest
+    runs-on: macos-latest
 
     steps:
       - name: Checkout code
@@ -75,18 +68,3 @@ jobs:
 
       - name: Run shfmt
         run: shfmt -d -i 2 -ci .
-
-  plugin_test:
-    strategy:
-      matrix:
-        os: [ubuntu-latest, macOS-latest]
-
-    runs-on: ${{ matrix.os }}
-
-    steps:
-      - name: asdf_plugin_test
-        uses: asdf-vm/actions/plugin-test@v1.0.0
-        with:
-          command: elm --version
-        env:
-          GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
