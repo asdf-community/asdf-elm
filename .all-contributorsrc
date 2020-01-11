@@ -25,11 +25,21 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "Haritaso",
+      "name": "Haritaso",
+      "avatar_url": "https://avatars2.githubusercontent.com/u/35331195?v=4",
+      "profile": "https://haritaso.me",
+      "contributions": [
+        "infra"
+      ]
     }
   ],
   "contributorsPerLine": 7,
   "projectName": "asdf-elm",
   "projectOwner": "asdf-community",
   "repoType": "github",
-  "repoHost": "https://github.com"
+  "repoHost": "https://github.com",
+  "skipCi": true
 }
