@@ -48,7 +48,7 @@ Thanks goes to these wonderful people
 <!-- markdownlint-disable -->
 <table>
   <tr>
-    <td align="center"><a href="https://bsky.moe"><img src="https://avatars3.githubusercontent.com/u/38746192?v=4" width="100px;" alt=""/><br /><sub><b>BSKY</b></sub></a><br /><a href="https://github.com/asdf-community/asdf-elm/commits?author=imbsky" title="Code">💻</a> <a href="https://github.com/asdf-community/asdf-elm/commits?author=imbsky" title="Documentation">📖</a> <a href="#maintenance-imbsky" title="Maintenance">🚧</a></td>
+    <td align="center"><a href="https://bsky.moe"><img src="https://avatars3.githubusercontent.com/u/38746192?v=4" width="100px;" alt=""/><br /><sub><b>BSKY</b></sub></a><br /><a href="https://github.com/asdf-community/asdf-elm/commits?author=imbsky" title="Code">💻</a> <a href="https://github.com/asdf-community/asdf-elm/commits?author=imbsky" title="Documentation">📖</a> <a href="#maintenance-imbsky" title="Maintenance">🚧</a> <a href="#infra-imbsky" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
     <td align="center"><a href="https://github.com/brianvanburken"><img src="https://avatars1.githubusercontent.com/u/1044316?v=4" width="100px;" alt=""/><br /><sub><b>Brian van Burken</b></sub></a><br /><a href="https://github.com/asdf-community/asdf-elm/commits?author=brianvanburken" title="Code">💻</a> <a href="https://github.com/asdf-community/asdf-elm/commits?author=brianvanburken" title="Documentation">📖</a></td>
     <td align="center"><a href="https://haritaso.me"><img src="https://avatars2.githubusercontent.com/u/35331195?v=4" width="100px;" alt=""/><br /><sub><b>Haritaso</b></sub></a><br /><a href="#infra-Haritaso" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a></td>
   </tr>
