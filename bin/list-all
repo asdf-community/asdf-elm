@@ -22,12 +22,6 @@ sort_versions() {
     LC_ALL=C sort -t. -k 1,1 -k 2,2n -k 3,3n -k 4,4n -k 5,5n | awk '{print $2}'
 }
 
-bintray_releases() {
-  local cmd="curl --silent --location"
-  local releases_path=https://dl.bintray.com/elmlang/elm-platform/
-  eval "$cmd $releases_path" | grep -oE ':[0-9\.]+(-\w+)?' | sed 's/://' | sort_versions | xargs
-}
-
 github_releases() {
   local cmd="curl --silent --location"
   if [ -n "$GITHUB_API_TOKEN" ]; then
@@ -37,6 +31,6 @@ github_releases() {
   eval "$cmd $releases_path" | grep 'tag_name' | sed -e 's/.* "//;s/",//' | sort_versions | xargs
 }
 
-versions="$(bintray_releases) $(github_releases)"
+versions="$(github_releases)"
 
 echo "$versions"
