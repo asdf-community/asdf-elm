@@ -27,7 +27,7 @@ install_elm() {
   local version=$2
   local install_path=$3
   local source_path="${install_path}/bin/elm.gz"
-  local distination_path="${install_path}/bin"
+  local destination_path="${install_path}/bin"
 
   if [ "$install_type" != "version" ]; then
     fail "asdf-elm supports release installs only"
@@ -51,37 +51,63 @@ install_elm() {
     esac
 
     local download_url="https://github.com/elm/compiler/releases/download/${version}/binary-for-${platform}-${architecture}-bit.gz"
-  else
+  elif [ "$converted_version" -ge 0180 ]; then
     case "$OSTYPE" in
-      darwin*) platform="darwin" ;;
-      linux*) platform="linux" ;;
+      darwin*) platform="macos" ;;
+      linux*)
+        case "$(uname -m)" in
+          x86_64) platform="linux-64bit" ;;
+          i686) platform="linux-32bit" ;;
+          *) fail "Unsupported architecture" ;;
+        esac
+        ;;
       *) fail "Unsupported platform" ;;
     esac
 
-    case "$(uname -m)" in
-      x86_64) architecture="x64" ;;
-      *) fail "Unsupported architecture" ;;
+    source_path="${install_path}/bin/elm.tar.gz"
+
+    local download_url="https://github.com/elm-lang/elm-platform/releases/download/0.18.0-exp/elm-platform-${platform}.tar.gz"
+  else
+    case "$OSTYPE" in
+      darwin*) platform="mac" ;;
+      *) fail "Unsupported platform" ;;
     esac
 
-    local download_url="https://dl.bintray.com/elmlang/elm-platform/${version}/${platform}-${architecture}.tar.gz"
+    pkg_version="${version//%.0$/}"
+    source_path="${install_path}/bin/elm.pkg"
+
+    local download_url="https://github.com/elm/compiler/releases/download/${version}/Elm-Platform-${pkg_version}.pkg"
   fi
 
   (
     echo "∗ Downloading and installing elm..."
-    mkdir -p "$distination_path"
+    mkdir -p "$destination_path"
     curl --silent --location --create-dirs --output "$source_path" "$download_url" || fail "Could not download"
 
     if [ "$converted_version" -ge 0190 ]; then
       gunzip "$source_path" || fail "Could not uncompress"
-      chmod +x "${distination_path}/elm" || fail "Could not find uncompressed binary"
-    else
-      tar zxf "$source_path" -C "$distination_path" --strip-components=1 || fail "Could not uncompress"
+      chmod +x "${destination_path}/elm" || fail "Could not find uncompressed binary"
+      rm -rf "$source_path"
+    elif [ "$converted_version" -ge 0180 ]; then
+      tar zxf "$source_path" -C "$destination_path" || fail "Could not uncompress"
       chmod +x \
-        "${distination_path}/elm" \
-        "${distination_path}/elm-make" \
-        "${distination_path}/elm-package" \
-        "${distination_path}/elm-reactor" \
-        "${distination_path}/elm-repl" || fail "Could not find uncompressed binary"
+        "$destination_path/elm" \
+        "$destination_path/elm-make" \
+        "$destination_path/elm-package" \
+        "$destination_path/elm-reactor" \
+        "$destination_path/elm-repl" || fail "Could not find uncompressed binary"
+      rm -rf "$source_path"
+    else
+      unpack_path="${install_path}/unpacked"
+      pkgutil --verbose --expand-full "$source_path" "$unpack_path" &&
+        cp -r "$unpack_path/binaries.pkg/Payload/" "$destination_path" || fail "Could not unpack download"
+      chmod +x \
+        "$destination_path/elm" \
+        "$destination_path/elm-make" \
+        "$destination_path/elm-package" \
+        "$destination_path/elm-reactor" \
+        "$destination_path/elm-repl" || fail "Could not find unpacked binary"
+      rm -rf "$source_path" "$unpack_path"
     fi
 
     echo "The installation was successful!"
