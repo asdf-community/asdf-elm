@@ -47,6 +47,7 @@ install_elm() {
 
     case "$(uname -m)" in
       x86_64) architecture="64" ;;
+      arm64) architecture="64" ;;
       *) fail "Unsupported architecture" ;;
     esac
 
