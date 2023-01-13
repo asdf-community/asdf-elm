@@ -4,7 +4,7 @@
 </div>
 <hr />
 
-[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/asdf-community/asdf-elm/Main%20workflow?style=flat-square)](https://github.com/asdf-community/asdf-elm/actions)
+[![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/asdf-community/asdf-elm/workflow.yml?branch=master&style=flat-square)](https://github.com/asdf-community/asdf-elm/actions)
 [![All Contributors](https://img.shields.io/badge/all_contributors-3-orange.svg?style=flat-square)](#contributors)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)](http://makeapullrequest.com)
 [![License](https://img.shields.io/github/license/asdf-community/asdf-elm?style=flat-square&color=brightgreen)](https://github.com/asdf-community/asdf-elm/blob/master/LICENSE)
