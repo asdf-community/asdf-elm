@@ -19,6 +19,10 @@
 ## Installation
 
 ```bash
+# asdf v0.16.0 and above
+asdf plugin add elm https://github.com/asdf-community/asdf-elm.git
+
+# asdf v0.15.x and below
 asdf plugin-add elm https://github.com/asdf-community/asdf-elm.git
 ```
 
