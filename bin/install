@@ -45,13 +45,19 @@ install_elm() {
       *) fail "Unsupported platform" ;;
     esac
 
+    local arm_suffix=""
     case "$(uname -m)" in
       x86_64) architecture="64" ;;
-      arm64) architecture="64" ;;
+      arm64)
+        architecture="64"
+        if [[ "$OSTYPE" == darwin* ]]; then
+          arm_suffix="-ARM"
+        fi
+        ;;
       *) fail "Unsupported architecture" ;;
     esac
 
-    local download_url="https://github.com/elm/compiler/releases/download/${version}/binary-for-${platform}-${architecture}-bit.gz"
+    local download_url="https://github.com/elm/compiler/releases/download/${version}/binary-for-${platform}-${architecture}-bit${arm_suffix}.gz"
   elif [ "$converted_version" -ge 0180 ]; then
     case "$OSTYPE" in
       darwin*) platform="macos" ;;
