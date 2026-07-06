@@ -38,7 +38,21 @@ install_elm() {
   local platform
   local architecture
 
-  if [ "$converted_version" -ge 0190 ]; then
+  if [ "$converted_version" -ge 0192 ]; then
+    case "$OSTYPE" in
+      darwin*) platform="mac" ;;
+      linux*) platform="linux" ;;
+      *) fail "Unsupported platform" ;;
+    esac
+
+    case "$(uname -m)" in
+      x86_64) architecture="x64" ;;
+      arm64) architecture="arm" ;;
+      *) fail "Unsupported architecture" ;;
+    esac
+
+    local download_url="https://github.com/elm/compiler/releases/download/${version}/elm-${version}-${platform}-${architecture}.gz"
+  elif [ "$converted_version" -ge 0190 ]; then
     case "$OSTYPE" in
       darwin*) platform="mac" ;;
       linux*) platform="linux" ;;
